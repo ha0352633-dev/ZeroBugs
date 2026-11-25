@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>UrbanPulse</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<header class="top">
+  <div class="brand">
+    <svg viewBox="0 0 32 32" width="34" height="34" aria-hidden="true"><circle cx="16" cy="16" r="14" fill="none" stroke="#22d3ee" stroke-width="2"/><path d="M4 17h6l3-8 5 14 3-9h7" fill="none" stroke="#f5c451" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+    <div><b>UrbanPulse</b><small>Smart City Intelligence and Response System</small></div>
+  </div>
+  <nav id="nav">
+    <button data-page="dashboard" data-i="nav_dashboard"></button>
+    <button data-page="report" data-i="nav_report"></button>
+    <button data-page="incidents" data-i="nav_incidents"></button>
+    <button data-page="map" data-i="nav_map"></button>
+    <button data-page="resources" data-i="nav_resources"></button>
+    <button data-page="simulation" data-i="nav_sim"></button>
+  </nav>
+  <div class="tools">
+    <button class="gold" id="demoBtn" data-i="demo"></button>
+    <button class="ghost" id="langBtn">EN</button>
+  </div>
+</header>
+
+<main>
+<section id="p-dashboard" class="page">
+  <div class="kpis" id="kpis"></div>
+  <div class="grid3">
+    <div class="card"><h3 data-i="c_status"></h3><div id="chStatus"></div></div>
+    <div class="card"><h3 data-i="c_cat"></h3><div id="chCat"></div></div>
+    <div class="card"><h3 data-i="c_prio"></h3><div id="chPrio"></div></div>
+  </div>
+  <div class="grid2">
+    <div class="card"><h3 data-i="nav_map"></h3><div id="mapDash" class="map"></div><div class="legend" id="mapLegend"></div></div>
+    <div class="stack">
+      <div class="card"><h3 data-i="c_city"></h3><div id="city"></div></div>
+      <div class="card"><h3 data-i="c_recent"></h3><div id="recent"></div></div>
+    </div>
+  </div>
+</section>
+
+<section id="p-report" class="page">
+  <div class="grid2">
+    <form class="card" id="form" novalidate>
+      <h3 data-i="f_title_h"></h3>
+      <label><span data-i="f_title"></span><input name="title" maxlength="120"></label>
+      <label><span data-i="f_desc"></span><textarea name="description" rows="4" maxlength="1500"></textarea></label>
+      <div class="row2">
+        <label><span data-i="f_cat"></span><select name="category" id="fCat"></select></label>
+        <label><span data-i="f_sev"></span><select name="severity" id="fSev"></select></label>
+      </div>
+      <div class="row2">
+        <label><span data-i="f_district"></span><select name="district" id="fDist"></select></label>
+        <label><span data-i="f_street"></span><input name="street" maxlength="80"></label>
+      </div>
+      <div class="row2">
+        <label><span data-i="f_people"></span><input name="people" type="number" min="0" value="10"></label>
+        <label><span data-i="f_date"></span><input name="created_at" type="datetime-local"></label>
+      </div>
+      <div class="btns"><button type="button" class="ghost" id="previewBtn" data-i="f_preview"></button><button type="submit" class="primary" data-i="f_submit"></button></div>
+    </form>
+    <div class="card" id="analysisBox"></div>
+  </div>
+</section>
+
+<section id="p-incidents" class="page">
+  <div class="card">
+    <div class="filters">
+      <input id="fq" data-ph="search">
+      <select id="fcat"></select><select id="flev"></select><select id="fsta"></select>
+      <button class="ghost" id="fclear" data-i="clear"></button>
+    </div>
+    <div class="scroll"><table id="tbl"></table></div>
+  </div>
+</section>
+
+<section id="p-map" class="page"><div class="card"><h3 data-i="nav_map"></h3><div id="mapFull" class="map big"></div><div class="legend" id="mapLegend2"></div></div></section>
+
+<section id="p-resources" class="page">
+  <div class="card"><div class="between"><h3 data-i="nav_resources"></h3><button class="primary" id="allocBtn" data-i="alloc"></button></div><div id="resCards" class="grid5"></div></div>
+  <div class="card"><h3 data-i="recs"></h3><div id="allocPlan"></div></div>
+</section>
+
+<section id="p-simulation" class="page">
+  <div class="card">
+    <h3 data-i="nav_sim"></h3><p class="muted" data-i="sim_note"></p>
+    <div id="scenarios" class="grid5"></div>
+    <div class="between"><label class="chk"><input type="checkbox" id="simApply"><span data-i="sim_apply"></span></label><button class="primary" id="simBtn" data-i="sim_run"></button></div>
+  </div>
+  <div id="simOut"></div>
+</section>
+</main>
+
+<div id="modal" class="modal" hidden><div class="sheet"><button class="x" id="mClose" aria-label="close">×</button><div id="mBody"></div></div></div>
+<div id="toasts"></div>
+<footer><span id="foot"></span> <button class="ghost sm" id="resetBtn" data-i="reset"></button></footer>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/sql.js/1.10.3/sql-wasm.js"></script>
+<script src="local-db.js"></script>
+<script src="app.js"></script>
+</body>
+</html>
